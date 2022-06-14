@@ -1,5 +1,6 @@
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
 import { useState } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const Header = () => {
   const [show, setShow] = useState(false)
@@ -13,15 +14,23 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">ecoproject</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>ecoproject</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/cart">
-                <i className="fas fa-shopping-cart"></i>Cart
-              </Nav.Link>
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart"></i>Cart
+                </Nav.Link>
+              </LinkContainer>
               <NavDropdown
-                title="Sign in"
+                title={
+                  <>
+                    <i className="fas fa-shopping-cart"></i>sign in
+                  </>
+                }
                 id="collasible-nav-dropdown"
                 show={show}
                 onMouseEnter={showDropdown}
