@@ -15,3 +15,9 @@ h3 {
 .btnAddCart {
   min-width: 100%;
 }
+.formControl {
+  max-width: 70px;
+}
+.qtyCol {
+  max-width: 92px;
+}
