@@ -104,7 +104,7 @@ const ProductPage = () => {
                               value={qty}
                               pattern="[0-9]*"
                               onChange={(e) =>
-                                setQty((p) =>
+                                setQty(() =>
                                   e.target.validity.valid
                                     ? Math.min(
                                         product.countInStock,

@@ -12,23 +12,23 @@ const Header = () => {
   }
   return (
     <header>
-      <Navbar bg="dark" variant="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>ecoproject</Navbar.Brand>
+            <Navbar.Brand>卡店</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i>Cart
+                  <i className="fas fa-shopping-cart"></i>購物車
                 </Nav.Link>
               </LinkContainer>
               <NavDropdown
                 title={
                   <>
-                    <i className="fas fa-shopping-cart"></i>sign in
+                    <i className="fas fa-user"></i>登入
                   </>
                 }
                 id="collasible-nav-dropdown"

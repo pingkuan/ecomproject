@@ -3,13 +3,20 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducers'
-const preloadedState = {}
+import { cartReducer } from './reducers/cartReducers'
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartIems'))
+  : []
+
+const preloadedState = { cart: { cartItems: cartItemsFromStorage } }
 
 const store = configureStore(
   {
     reducer: {
       productList: productListReducer,
       productDetails: productDetailsReducer,
+      cart: cartReducer,
     },
   },
   preloadedState

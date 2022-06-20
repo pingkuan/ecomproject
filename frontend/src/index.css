@@ -15,9 +15,25 @@ h3 {
 .btnAddCart {
   min-width: 100%;
 }
+.btnGoCheckout {
+  min-width: 100%;
+}
 .formControl {
   max-width: 70px;
 }
 .qtyCol {
   max-width: 92px;
+}
+
+.imageInCart {
+  text-align: center;
+}
+
+.linkText {
+  text-decoration: none;
+}
+
+.cartInputPosition {
+  position: relative;
+  top: 9px;
 }
