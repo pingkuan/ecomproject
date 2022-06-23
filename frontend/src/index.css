@@ -12,6 +12,9 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
+.mainContainer {
+  padding-top: 80px;
+}
 .btnAddCart {
   min-width: 100%;
 }
@@ -36,4 +39,9 @@ h3 {
 .cartInputPosition {
   position: relative;
   top: 9px;
+}
+
+.signInButton {
+  position: relative;
+  top: 10px;
 }
