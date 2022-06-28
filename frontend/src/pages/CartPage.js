@@ -42,7 +42,7 @@ const CartPage = () => {
   }
 
   const checkoutHandler = () => {
-    navigate(`/login?redirect=shopping`)
+    navigate('/login?redirect=shipping')
   }
 
   return (
@@ -130,7 +130,10 @@ const CartPage = () => {
               <Button
                 type="button"
                 className="btn-block btnGoCheckout"
-                disabled={cartItems.length === 0}
+                disabled={
+                  cartItems.length === 0 ||
+                  cartItems.reduce((acc, item) => acc + item.qty, 0) === 0
+                }
                 onClick={checkoutHandler}
               >
                 結帳

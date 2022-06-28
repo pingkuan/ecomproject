@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect)
+      navigate('../' + redirect)
     }
   }, [userInfo, navigate, redirect])
 
@@ -55,7 +55,7 @@ const LoginPage = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="signInButton">
+        <Button type="submit" variant="primary" className="submitButton">
           Sign In
         </Button>
       </Form>

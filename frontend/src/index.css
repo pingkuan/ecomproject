@@ -41,7 +41,15 @@ h3 {
   top: 9px;
 }
 
-.signInButton {
+.submitButton {
   position: relative;
   top: 10px;
+}
+
+.checkOutNav {
+  max-width: 20%;
+}
+
+.fullwidthBtn {
+  min-width: 100%;
 }
