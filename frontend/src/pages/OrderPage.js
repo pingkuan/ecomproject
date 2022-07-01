@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { Link, useNavigate, useMatch } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getOrderDetails } from '../actions/orderActions'
+import { getOrderDetails, payOrder } from '../actions/orderActions'
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from '../constants/orderConstants'
 
 const OrderPage = () => {
   const navigate = useNavigate()
@@ -12,14 +18,37 @@ const OrderPage = () => {
 
   const orderId = useMatch('/order/:id')?.params.id
 
+  const [clientId, setClientId] = useState('test')
+  console.log(clientId)
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
+  console.log(order)
+  const orderPay = useSelector((state) => state.orderPay)
+  const { loading: loadingPay, success: successPay } = orderPay
+
+  const initialOptions = {
+    'client-id': clientId,
+    currency: 'TWD',
+    locale: 'zh_TW',
+  }
+
+  const handleApprove = (approveOrder) => {
+    console.log(approveOrder)
+    dispatch(payOrder(orderId, approveOrder))
+  }
 
   useEffect(() => {
-    if (!order || order._id !== orderId) {
-      dispatch(getOrderDetails(orderId))
+    const getClientId = async () => {
+      const { data: clientId } = await axios.get('/api/config/paypal')
+      setClientId(clientId)
     }
-  }, [dispatch, orderId, order])
+    if (!order || successPay || order._id !== orderId) {
+      dispatch({ type: ORDER_PAY_RESET })
+      dispatch(getOrderDetails(orderId))
+    } else if (!order.isPaid) {
+      getClientId()
+    }
+  }, [dispatch, orderId, order, successPay])
 
   return loading ? (
     <Loader />
@@ -132,6 +161,34 @@ const OrderPage = () => {
                   <Col>NT {order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+              {!order.isPaid && (
+                <ListGroup.Item>
+                  {loadingPay && <Loader />}
+                  {console.log(clientId)}
+                  <PayPalScriptProvider options={initialOptions}>
+                    {console.log(initialOptions)}
+                    <PayPalButtons
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: order.totalPrice,
+                                currency_code: 'TWD',
+                              },
+                            },
+                          ],
+                        })
+                      }}
+                      onApprove={async (data, actions) => {
+                        const successOrder = await actions.order.capture()
+                        console.log('order', successOrder)
+                        handleApprove(successOrder)
+                      }}
+                    />
+                  </PayPalScriptProvider>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>
