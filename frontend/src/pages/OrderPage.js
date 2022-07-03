@@ -21,10 +21,9 @@ const OrderPage = () => {
 
   const [clientId, setClientId] = useState('test')
 
-  console.log(clientId)
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
-  console.log(order)
+
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
@@ -33,11 +32,6 @@ const OrderPage = () => {
     currency: 'TWD',
     locale: 'zh_TW',
   }
-
-  // const handleApprove = (approveOrder) => {
-  //   console.log(approveOrder)
-  //   dispatch(payOrder(orderId, approveOrder))
-  // }
 
   useEffect(() => {
     const getClientId = async () => {

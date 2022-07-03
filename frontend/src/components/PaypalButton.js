@@ -2,8 +2,10 @@ import { useEffect } from 'react'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import { payOrder } from '../actions/orderActions'
 import { useDispatch } from 'react-redux'
+
 const PaypalButton = ({ clientId, price, showSpinner, orderId }) => {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer()
+
   const reduxDispatch = useDispatch()
   useEffect(() => {
     dispatch({
@@ -18,6 +20,7 @@ const PaypalButton = ({ clientId, price, showSpinner, orderId }) => {
   const handleApprove = (approveOrder) => {
     reduxDispatch(payOrder(orderId, approveOrder))
   }
+
   return (
     <>
       {showSpinner && isPending && <div className="spinner" />}
@@ -42,4 +45,5 @@ const PaypalButton = ({ clientId, price, showSpinner, orderId }) => {
     </>
   )
 }
+
 export default PaypalButton

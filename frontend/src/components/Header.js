@@ -39,10 +39,10 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>個人資料</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
+                    登出
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
@@ -57,7 +57,31 @@ const Header = () => {
                   onMouseEnter={showDropdown}
                   onMouseLeave={hideDropdown}
                 >
-                  Sign in
+                  <LinkContainer to="/login">
+                    <NavDropdown.Item>登入</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/register">
+                    <NavDropdown.Item>註冊</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown
+                  title="Admin"
+                  id="adminmenu"
+                  show={show}
+                  onMouseEnter={showDropdown}
+                  onMouseLeave={hideDropdown}
+                >
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/productlist">
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/orderlist">
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               )}
             </Nav>
