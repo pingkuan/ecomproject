@@ -13,6 +13,10 @@ import PaymentPage from './pages/PaymentPage'
 import PlaceOrderPage from './pages/PlaceOrderPage'
 import OrderPage from './pages/OrderPage'
 import UserListPage from './pages/UserListPage'
+import UserEditPage from './pages/UserEditPage'
+import ProductListPage from './pages/ProductListPage'
+import ProductEditPage from './pages/ProductEditPage'
+import OrderListPage from './pages/OrderListPage'
 const App = () => {
   return (
     <Router>
@@ -20,6 +24,7 @@ const App = () => {
       <main className="py-3">
         <Container className="mainContainer">
           <Routes>
+            <Route path="/admin/user/:id/edit" element={<UserEditPage />} />
             <Route path="/admin/userlist" element={<UserListPage />} />
             <Route path="/order/:id" element={<OrderPage />} />
             <Route path="/shipping" element={<ShippingPage />} />
@@ -30,6 +35,12 @@ const App = () => {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/admin/orderlist" element={<OrderListPage />} />
+            <Route path="/admin/productlist" element={<ProductListPage />} />
+            <Route
+              path="/admin/product/:id/edit"
+              element={<ProductEditPage />}
+            />
             <Route path="/cart/*" element={<CartPage />} />
           </Routes>
         </Container>

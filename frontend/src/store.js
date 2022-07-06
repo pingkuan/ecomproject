@@ -2,6 +2,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import {
   productListReducer,
   productDetailsReducer,
+  productDeleteReducer,
+  productCreateReducer,
+  productUpdateReducer,
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import {
@@ -11,12 +14,15 @@ import {
   userUpdateProfileReducer,
   userListReducer,
   userDeleteReducer,
+  userUpdateReducer,
 } from './reducers/userReducers'
 import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
+  orderDeliverReducer,
   orderListMyReducer,
+  orderListReducer,
 } from './reducers/orderReducers'
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -43,17 +49,23 @@ const store = configureStore({
   reducer: {
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
+    productUpdate: productUpdateReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
     userList: userListReducer,
+    userDelete: userDeleteReducer,
+    userUpdate: userUpdateReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
+    orderDeliver: orderDeliverReducer,
     orderListMy: orderListMyReducer,
-    userDelete: userDeleteReducer,
+    orderList: orderListReducer,
   },
   preloadedState,
 })

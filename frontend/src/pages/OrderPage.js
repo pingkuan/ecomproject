@@ -6,7 +6,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getOrderDetails } from '../actions/orderActions'
+import { getOrderDetails, deliverOrder } from '../actions/orderActions'
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
@@ -27,6 +27,12 @@ const OrderPage = () => {
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   const initialOptions = {
     'client-id': clientId,
     currency: 'TWD',
@@ -34,17 +40,25 @@ const OrderPage = () => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
     const getClientId = async () => {
       const { data: client_Id } = await axios.get('/api/config/paypal')
       setClientId(client_Id)
     }
-    if (!order || successPay || order._id !== orderId) {
+    if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET })
+      dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
       getClientId()
     }
-  }, [dispatch, orderId, order, successPay])
+  }, [dispatch, orderId, order, successPay, successDeliver, navigate])
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
 
   return loading ? (
     <Loader />
@@ -170,6 +184,21 @@ const OrderPage = () => {
                   </PayPalScriptProvider>
                 </ListGroup.Item>
               )}
+              {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block fullwidthBtn"
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>

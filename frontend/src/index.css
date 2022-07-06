@@ -21,6 +21,9 @@ h3 {
 .btnGoCheckout {
   min-width: 100%;
 }
+.btnCreateProduct {
+  float: right;
+}
 .formControl {
   max-width: 70px;
 }
