@@ -1,38 +1,38 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { listUsers, deleteUser } from '../actions/userActions'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import { listUsers, deleteUser } from '../actions/userActions';
 
 const UserListPage = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const userList = useSelector((state) => state.userList)
-  const { loading, error, users } = userList
+  const userList = useSelector((state) => state.userList);
+  const { loading, error, users } = userList;
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete)
-  const { success: successDelete } = userDelete
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers())
+      dispatch(listUsers());
     } else {
-      navigate('/login')
+      navigate('/login');
     }
-  }, [dispatch, navigate, successDelete, userInfo])
+  }, [dispatch, navigate, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confirm('確定刪除使用者？')) {
-      dispatch(deleteUser(id))
+      dispatch(deleteUser(id));
     }
-  }
+  };
 
   return (
     <>
@@ -40,7 +40,7 @@ const UserListPage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <Table>
           <thead>
@@ -62,23 +62,23 @@ const UserListPage = () => {
                 </td>
                 <td>
                   {user.isAdmin ? (
-                    <i className="fas fa-check" style={{ color: 'green' }}></i>
+                    <i className='fas fa-check' style={{ color: 'green' }}></i>
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td>
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
+                    <Button variant='light' className='btn-sm'>
+                      <i className='fas fa-edit'></i>
                     </Button>
                   </LinkContainer>
                   <Button
-                    variant="danger"
-                    className="btn-sm"
+                    variant='danger'
+                    className='btn-sm'
                     onClick={() => deleteHandler(user._id)}
                   >
-                    <i className="fas fa-trash"></i>
+                    <i className='fas fa-trash'></i>
                   </Button>
                 </td>
               </tr>
@@ -87,6 +87,6 @@ const UserListPage = () => {
         </Table>
       )}
     </>
-  )
-}
-export default UserListPage
+  );
+};
+export default UserListPage;
