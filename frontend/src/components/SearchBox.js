@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBox = () => {
@@ -9,7 +9,7 @@ const SearchBox = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/search/${keyword}`);
+      navigate(`/search/${keyword}/page/1`);
     } else {
       navigate('/');
     }
@@ -21,10 +21,10 @@ const SearchBox = () => {
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder='Search Products...'
+        placeholder='搜尋商品...'
         className='mr-sm-2 ml-sm-5'
       ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2 pull-left'>
+      <Button type='submit' variant='outline-success' className='p-2 searchBtn'>
         Search
       </Button>
     </Form>

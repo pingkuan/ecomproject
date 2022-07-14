@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useMatch, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Paginate from '../components/Paginate';
 import {
   listProducts,
   deleteProduct,
@@ -16,8 +17,12 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  let { pageNumber } = useParams();
+
+  pageNumber = pageNumber || 1;
+
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -47,7 +52,7 @@ const ProductListPage = () => {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts('', '', pageNumber));
     }
   }, [
     dispatch,
@@ -72,14 +77,14 @@ const ProductListPage = () => {
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1>Products</h1>
+          <h1>商品</h1>
         </Col>
         <Col className=' '>
           <Button
             className='my-3 btnCreateProduct'
             onClick={createProductHandler}
           >
-            <i className='fas fa-plus'></i> Create Product
+            <i className='fas fa-plus'></i> 新增商品
           </Button>
         </Col>
       </Row>
@@ -128,6 +133,7 @@ const ProductListPage = () => {
               ))}
             </tbody>
           </Table>
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>

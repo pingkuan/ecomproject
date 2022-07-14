@@ -51,7 +51,7 @@ const ProductPage = () => {
     if (!product._id || product._id !== id) {
       dispatch(listProductDetails(id));
     }
-  }, [dispatch, id, successProductReview]);
+  }, [dispatch, id, successProductReview, product._id]);
 
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);

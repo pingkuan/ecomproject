@@ -54,7 +54,15 @@ const OrderPage = () => {
     } else if (!order.isPaid) {
       getClientId();
     }
-  }, [dispatch, orderId, order, successPay, successDeliver, navigate]);
+  }, [
+    dispatch,
+    orderId,
+    order,
+    successPay,
+    successDeliver,
+    navigate,
+    userInfo,
+  ]);
 
   const deliverHandler = () => {
     dispatch(deliverOrder(order));

@@ -2,27 +2,30 @@ import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
+const Paginate = ({
+  pages,
+  page,
+  isAdmin = false,
+  keyword = '',
+  category = '',
+}) => {
   const navigate = useNavigate();
 
-  const choosePage = () => {
-    const chosenPage = Number(prompt('輸入頁數', ''));
-    isNaN(chosenPage)
-      ? choosePage()
-      : chosenPage > pages
-      ? (chosenPage = pages)
-      : chosenPage < 1
-      ? (chosenPage = 1)
-      : chosenPage;
+  function choosePage() {
+    let chosenPage;
+
+    do {
+      chosenPage = Number(prompt('輸入頁數', ''));
+    } while (isNaN(chosenPage));
 
     navigate(
       !isAdmin
         ? keyword
           ? `/search/${keyword}/page/${chosenPage}`
-          : `/page/${chosenPage}`
+          : `/${category}/page/${chosenPage}`
         : `/admin/productlist/${chosenPage}`
     );
-  };
+  }
 
   return pages > 7 && page < 5 ? (
     <Pagination>
@@ -33,7 +36,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
             !isAdmin
               ? keyword
                 ? `/search/${keyword}/page/${x + 1}`
-                : `/page/${x + 1}`
+                : `/${category}/page/${x + 1}`
               : `/admin/productlist/${x + 1}`
           }
         >
@@ -46,7 +49,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
           !isAdmin
             ? keyword
               ? `/search/${keyword}/page/${pages}`
-              : `/page/${pages}`
+              : `/${category}/page/${pages}`
             : `/admin/productlist/${pages}`
         }
       >
@@ -60,7 +63,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
           !isAdmin
             ? keyword
               ? `/search/${keyword}/page/${1}`
-              : `/page/${1}`
+              : `/${category}/page/${1}`
             : `/admin/productlist/${1}`
         }
       >
@@ -69,29 +72,29 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
       <Pagination.Ellipsis onClick={choosePage}></Pagination.Ellipsis>
       {[...Array(5).keys()].map((x) => (
         <LinkContainer
-          key={pages - x}
+          key={pages - 4 + x}
           to={
             !isAdmin
               ? keyword
-                ? `/search/${keyword}/page/${page - x}`
-                : `/page/${pages - x}`
-              : `/admin/productlist/${pages - x}`
+                ? `/search/${keyword}/page/${pages - 4 + x}`
+                : `/${category}/page/${pages - 4 + x}`
+              : `/admin/productlist/${pages - 4 + x}`
           }
         >
-          <Pagination.Item active={pages - x === page}>
-            {pages - x}
+          <Pagination.Item active={pages - 4 + x === page}>
+            {pages - 4 + x}
           </Pagination.Item>
         </LinkContainer>
       ))}
     </Pagination>
-  ) : page > 4 && page < pages - 4 && pages > 7 ? (
+  ) : page > 4 && page <= pages - 4 && pages > 7 ? (
     <Pagination>
       <LinkContainer
         to={
           !isAdmin
             ? keyword
               ? `/search/${keyword}/page/${1}`
-              : `/page/${1}`
+              : `/${category}/page/${1}`
             : `/admin/productlist/${1}`
         }
       >
@@ -105,8 +108,8 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
             !isAdmin
               ? keyword
                 ? `/search/${keyword}/page/${page + x - 1}`
-                : `/page/${pages + x - 1}`
-              : `/admin/productlist/${pages + x - 1}`
+                : `/${category}/page/${page + x - 1}`
+              : `/admin/productlist/${page + x - 1}`
           }
         >
           <Pagination.Item active={page + x - 1 === page}>
@@ -121,7 +124,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
           !isAdmin
             ? keyword
               ? `/search/${keyword}/page/${pages}`
-              : `/page/${pages}`
+              : `/${category}/page/${pages}`
             : `/admin/productlist/${pages}`
         }
       >
@@ -137,7 +140,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
             !isAdmin
               ? keyword
                 ? `/search/${keyword}/page/${x + 1}`
-                : `/page/${x + 1}`
+                : `/${category}/page/${x + 1}`
               : `/admin/productlist/${x + 1}`
           }
         >

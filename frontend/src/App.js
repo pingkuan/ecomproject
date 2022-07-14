@@ -17,6 +17,7 @@ import UserEditPage from './pages/UserEditPage';
 import ProductListPage from './pages/ProductListPage';
 import ProductEditPage from './pages/ProductEditPage';
 import OrderListPage from './pages/OrderListPage';
+import ShowProductsPage from './pages/ShowProductsPage';
 const App = () => {
   return (
     <Router>
@@ -34,10 +35,21 @@ const App = () => {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/' element={<HomePage />} />
-            <Route path='/search/:keyword' element={<HomePage />} />
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              element={<ShowProductsPage />}
+            />
+            <Route
+              path='/:category/page/:pageNumber'
+              element={<ShowProductsPage />}
+            />
             <Route path='/product/:id' element={<ProductPage />} />
             <Route path='/admin/orderlist' element={<OrderListPage />} />
             <Route path='/admin/productlist' element={<ProductListPage />} />
+            <Route
+              path='/admin/productlist/:pageNumber'
+              element={<ProductListPage />}
+            />
             <Route
               path='/admin/product/:id/edit'
               element={<ProductEditPage />}
