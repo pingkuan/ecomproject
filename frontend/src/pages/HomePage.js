@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import { listProducts } from '../actions/proudctActions';
 import { useParams, Link } from 'react-router-dom';
 import ProductCarousel from '../components/ProductCarousel';
+import ProductCategory from '../components/ProductCategory';
 const HomePage = () => {
   const { keyword, category } = useParams();
   const dispatch = useDispatch();
@@ -27,6 +28,23 @@ const HomePage = () => {
           Go Back
         </Link>
       )}
+      <h1>商品</h1>
+      <Row>
+        <Col sm={6} lg={6} className='mb-4 d-flex'>
+          <ProductCategory
+            category={'card'}
+            image={'/images/14558127.jpg'}
+            name={'單卡'}
+          />
+        </Col>
+        <Col sm={6} lg={6} className='mb-4 d-flex'>
+          <ProductCategory
+            category={'Accessories'}
+            image={'/images/1.jpg'}
+            name={'周邊'}
+          />
+        </Col>
+      </Row>
     </>
   );
 };

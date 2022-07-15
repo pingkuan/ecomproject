@@ -40,9 +40,14 @@ const App = () => {
               element={<ShowProductsPage />}
             />
             <Route
+              path='/search/:keyword/page'
+              element={<ShowProductsPage />}
+            />
+            <Route
               path='/:category/page/:pageNumber'
               element={<ShowProductsPage />}
             />
+            <Route path='/:category/page' element={<ShowProductsPage />} />
             <Route path='/product/:id' element={<ProductPage />} />
             <Route path='/admin/orderlist' element={<OrderListPage />} />
             <Route path='/admin/productlist' element={<ProductListPage />} />

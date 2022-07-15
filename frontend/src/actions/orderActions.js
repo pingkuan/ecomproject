@@ -20,6 +20,7 @@ import {
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
 import axios from 'axios';
+import { CART_CLEAR_ITEMS } from '../constants/cartConstants';
 import { logout } from './userActions';
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -45,6 +46,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
       type: ORDER_CREATE_SUCCESS,
       payload: data,
     });
+    dispatch({
+      type: CART_CLEAR_ITEMS,
+      payload: data,
+    });
+    localStorage.removeItem('cartItems');
   } catch (error) {
     const message =
       error.response && error.response.data.message

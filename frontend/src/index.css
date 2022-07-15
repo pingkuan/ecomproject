@@ -57,7 +57,7 @@ h3 {
   min-width: 100%;
 }
 
-.searchForm{
+.searchForm {
   display: flex;
 }
 
@@ -92,6 +92,36 @@ h3 {
   }
 }
 
-.searchBtn{
+.searchBtn {
   margin-left: 1rem;
+}
+
+.galleryBox {
+  padding-top: 1.25rem;
+}
+.galleryBox img {
+  max-height: 13.125rem;
+  width: auto;
+  align-self: center;
+  margin: auto;
+}
+.col-lg-4 .galleryBox img {
+  max-height: 18rem;
+}
+@media (max-width: 575.98px) {
+  .col-lg-4 .galleryBox img {
+    max-height: 13.125rem;
+  }
+}
+
+.galleryBox .card-body {
+  margin-top: auto;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+.cardHover:hover {
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(2, 64, 202);
 }

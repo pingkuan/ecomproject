@@ -16,18 +16,25 @@ const SearchBox = () => {
   };
 
   return (
-    <Form onSubmit={submitHandler} className='searchForm'>
-      <Form.Control
-        type='text'
-        name='q'
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder='搜尋商品...'
-        className='mr-sm-2 ml-sm-5'
-      ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2 searchBtn'>
-        Search
+    <>
+      <Form className='searchForm'>
+        <Form.Control
+          type='text'
+          name='q'
+          onChange={(e) => setKeyword(e.target.value)}
+          placeholder='搜尋商品...'
+          className='mr-sm-2 ml-sm-5'
+        ></Form.Control>
+      </Form>
+      <Button
+        type='submit'
+        onClick={submitHandler}
+        variant='outline-success'
+        className='searchBtn'
+      >
+        搜尋
       </Button>
-    </Form>
+    </>
   );
 };
 export default SearchBox;
