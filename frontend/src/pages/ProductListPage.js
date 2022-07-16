@@ -102,10 +102,10 @@ const ProductListPage = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th></th>
+                <th>商品名稱</th>
+                <th>價格</th>
+                <th>種類</th>
+                <th>更新商品</th>
               </tr>
             </thead>
             <tbody>

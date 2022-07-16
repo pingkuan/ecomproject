@@ -7,37 +7,37 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
       <Nav.Item className='checkOutNav'>
         {step1 ? (
           <LinkContainer to='/login'>
-            <Nav.Link>Sign IN</Nav.Link>
+            <Nav.Link>登入</Nav.Link>
           </LinkContainer>
         ) : (
-          <Nav.Link disabled>Sign In</Nav.Link>
+          <Nav.Link disabled>登入</Nav.Link>
         )}
       </Nav.Item>
       <Nav.Item className='checkOutNav'>
         {step2 ? (
           <LinkContainer to='/shipping'>
-            <Nav.Link>Shipping</Nav.Link>
+            <Nav.Link>配送地址</Nav.Link>
           </LinkContainer>
         ) : (
-          <Nav.Link disabled>Shipping</Nav.Link>
+          <Nav.Link disabled>配送地址</Nav.Link>
         )}
       </Nav.Item>
       <Nav.Item className='checkOutNav'>
         {step3 ? (
           <LinkContainer to='/payment'>
-            <Nav.Link>Payment</Nav.Link>
+            <Nav.Link>支付方式</Nav.Link>
           </LinkContainer>
         ) : (
-          <Nav.Link disabled>Payment</Nav.Link>
+          <Nav.Link disabled>支付方式</Nav.Link>
         )}
       </Nav.Item>
       <Nav.Item className='checkOutNav'>
         {step4 ? (
           <LinkContainer to='/placeorder'>
-            <Nav.Link>Placeorder</Nav.Link>
+            <Nav.Link>下訂</Nav.Link>
           </LinkContainer>
         ) : (
-          <Nav.Link disabled>Placeorder</Nav.Link>
+          <Nav.Link disabled>下訂</Nav.Link>
         )}
       </Nav.Item>
     </Nav>

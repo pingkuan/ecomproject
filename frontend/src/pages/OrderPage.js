@@ -74,14 +74,14 @@ const OrderPage = () => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1>訂單編號 {order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>配送及付款情況</h2>
               <p>
-                <strong>Name: </strong>
+                <strong>使用者名稱: </strong>
                 {order.user.name}
               </p>
               <p>
@@ -91,37 +91,35 @@ const OrderPage = () => {
                 </a>
               </p>
               <p>
-                <strong>Address:</strong>
+                <strong>地址:</strong>
                 {order.shippingAddress.address},{order.shippingAddress.city} ,
                 {order.shippingAddress.postalCode},{' '}
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
-                <Message variant='success'>
-                  Delivered on {order.deliveredAt}
-                </Message>
+                <Message variant='success'>於 {order.deliveredAt} 送達</Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message variant='danger'>未送達</Message>
               )}
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Payment Method</h2>
+              <h2>支付方式</h2>
               <p>
-                <strong>Method: </strong>
+                <strong>方式: </strong>
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
+                <Message variant='success'>已於 {order.paidAt} 付款</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message variant='danger'>未付款</Message>
               )}
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h2>訂單商品</h2>
               {order.orderItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+                <Message>購物車是空的</Message>
               ) : (
                 <ListGroup variant='flush'>
                   {order.orderItems.map((item) => (
@@ -159,27 +157,27 @@ const OrderPage = () => {
           <Card>
             <ListGroup>
               <ListGroup.Item variant='flush'>
-                <h2>Order Summary</h2>
+                <h2>訂單資料</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
+                  <Col>商品價格</Col>
                   <Col>NT {order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>運費</Col>
                   <Col>NT {order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Total</Col>
+                  <Col>總價</Col>
                   <Col>NT {order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {!order.isPaid && !userInfo.isAdmin && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   <PayPalScriptProvider options={initialOptions}>
@@ -203,7 +201,7 @@ const OrderPage = () => {
                       className='btn btn-block fullwidthBtn'
                       onClick={deliverHandler}
                     >
-                      Mark As Delivered
+                      標記為送達
                     </Button>
                   </ListGroup.Item>
                 )}

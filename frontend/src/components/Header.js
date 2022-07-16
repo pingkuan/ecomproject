@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap';
 import { useState } from 'react';
-import { Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../actions/userActions';
@@ -8,19 +8,36 @@ import SearchBox from './SearchBox';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({
+    userName: false,
+    signIn: false,
+    adminMenu: false,
+  });
+  const [nowShow, setNowShow] = useState();
+  const { userName, signIn, adminMenu } = show;
+
   const showDropdown = (e) => {
-    setShow(!show);
+    setShow((prevState) => ({
+      ...prevState,
+      [e.target.id]: !prevState[e.target.id],
+    }));
+    setNowShow(e.target.id);
   };
-  const hideDropdown = (e) => {
-    setShow(false);
+
+  const hideDropdown = () => {
+    setShow((prevState) => ({
+      ...prevState,
+      [nowShow]: false,
+    }));
   };
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigate('/');
   };
 
   return (
@@ -40,7 +57,13 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
+                <NavDropdown
+                  title={userInfo.name}
+                  id='userName'
+                  show={userName}
+                  onMouseEnter={showDropdown}
+                  onMouseLeave={hideDropdown}
+                >
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>個人資料</NavDropdown.Item>
                   </LinkContainer>
@@ -55,8 +78,8 @@ const Header = () => {
                       <i className='fas fa-user'></i>登入
                     </>
                   }
-                  id='collasible-nav-dropdown'
-                  show={show}
+                  id='signIn'
+                  show={signIn}
                   onMouseEnter={showDropdown}
                   onMouseLeave={hideDropdown}
                 >
@@ -71,19 +94,19 @@ const Header = () => {
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown
                   title='Admin'
-                  id='adminmenu'
-                  show={show}
+                  id='adminMenu'
+                  show={adminMenu}
                   onMouseEnter={showDropdown}
                   onMouseLeave={hideDropdown}
                 >
                   <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
+                    <NavDropdown.Item>使用者名單</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
+                    <NavDropdown.Item>商品清單</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                    <NavDropdown.Item>訂單</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}

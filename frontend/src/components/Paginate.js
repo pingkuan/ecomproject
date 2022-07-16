@@ -18,13 +18,15 @@ const Paginate = ({
       chosenPage = Number(prompt('輸入頁數', ''));
     } while (isNaN(chosenPage));
 
-    navigate(
-      !isAdmin
-        ? keyword
-          ? `/search/${keyword}/page/${chosenPage}`
-          : `/${category}/page/${chosenPage}`
-        : `/admin/productlist/${chosenPage}`
-    );
+    if (chosenPage !== 0) {
+      navigate(
+        !isAdmin
+          ? keyword
+            ? `/search/${keyword}/page/${chosenPage}`
+            : `/${category}/page/${chosenPage}`
+          : `/admin/productlist/${chosenPage}`
+      );
+    }
   }
 
   return pages > 7 && page < 5 ? (

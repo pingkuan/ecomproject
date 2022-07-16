@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 
 const PlaceOrderPage = () => {
   const navigate = useNavigate();
@@ -27,8 +28,9 @@ const PlaceOrderPage = () => {
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [navigate, success]);
+  }, [navigate, success, dispatch]);
 
   const placeOrderHandler = () => {
     dispatch(
@@ -51,23 +53,23 @@ const PlaceOrderPage = () => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>配送</h2>
               <p>
-                <strong>Address:</strong>
+                <strong>地址:</strong>
                 {cart.shippingAddress.address},{cart.shippingAddress.city} ,
                 {cart.shippingAddress.postalCode},{' '}
                 {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <strong>Method: </strong>
+              <h2>支付方式</h2>
+              <strong>方式: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h2>訂單物品</h2>
               {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+                <Message>購物車是空的</Message>
               ) : (
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item) => (
@@ -105,23 +107,23 @@ const PlaceOrderPage = () => {
           <Card>
             <ListGroup>
               <ListGroup.Item variant='flush'>
-                <h2>Order Summary</h2>
+                <h2>訂單資料</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
+                  <Col>商品價格</Col>
                   <Col>NT {orderCart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>運費</Col>
                   <Col>NT {orderCart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Total</Col>
+                  <Col>總價</Col>
                   <Col>NT {orderCart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -135,7 +137,7 @@ const PlaceOrderPage = () => {
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Place Order
+                  下訂
                 </Button>
               </ListGroup.Item>
             </ListGroup>

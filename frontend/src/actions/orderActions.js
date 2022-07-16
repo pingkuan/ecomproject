@@ -17,7 +17,6 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_FAIL,
-  ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
 import axios from 'axios';
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants';
@@ -93,6 +92,9 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout());
+    }
     dispatch({
       type: ORDER_DETAILS_FAIL,
       payload: message,

@@ -36,7 +36,7 @@ const UserListPage = () => {
 
   return (
     <>
-      <h1>Users</h1>
+      <h1>使用者名單</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -46,9 +46,9 @@ const UserListPage = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NAME</th>
+              <th>使用者名稱</th>
               <th>EMAIL</th>
-              <th>ADMIN</th>
+              <th>管理員</th>
               <th></th>
             </tr>
           </thead>

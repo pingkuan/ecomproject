@@ -56,14 +56,14 @@ const ProfilePage = () => {
   return (
     <Row>
       <Col md={3}>
-        <h1>User Profile</h1>
+        <h1>個人資料</h1>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
         {success && <Message variant='success'>Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
-            <Form.Label>Name</Form.Label>
+            <Form.Label>使用者名稱</Form.Label>
             <Form.Control
               type='name'
               placeholder='Enter name'
@@ -73,7 +73,7 @@ const ProfilePage = () => {
           </Form.Group>
 
           <Form.Group controlId='email'>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type='email'
               placeholder='Enter email'
@@ -83,7 +83,7 @@ const ProfilePage = () => {
           </Form.Group>
 
           <Form.Group controlId='password'>
-            <Form.Label>Password</Form.Label>
+            <Form.Label>密碼</Form.Label>
             <Form.Control
               type='password'
               placeholder='Enter password'
@@ -93,7 +93,7 @@ const ProfilePage = () => {
           </Form.Group>
 
           <Form.Group controlId='confirmpassword'>
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>確認密碼</Form.Label>
             <Form.Control
               type='password'
               placeholder='Confirm password'
@@ -108,7 +108,7 @@ const ProfilePage = () => {
         </Form>
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
+        <h2>我的訂單</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
@@ -118,10 +118,10 @@ const ProfilePage = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                <th>日期</th>
+                <th>價格</th>
+                <th>已付款</th>
+                <th>已送達</th>
                 <th></th>
               </tr>
             </thead>
@@ -148,7 +148,7 @@ const ProfilePage = () => {
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
                       <Button className='btn-sm' variant='light'>
-                        Details
+                        詳細資料
                       </Button>
                     </LinkContainer>
                   </td>

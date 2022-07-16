@@ -39,64 +39,64 @@ const RegisterPage = () => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>註冊</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
-          <Form.Label>Name</Form.Label>
+          <Form.Label>使用者名稱</Form.Label>
           <Form.Control
             type='name'
-            placeholder='Enter name'
+            placeholder='輸入使用者名稱'
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type='email'
-            placeholder='Enter email'
+            placeholder='輸入email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>密碼</Form.Label>
           <Form.Control
             type='password'
-            placeholder='Enter password'
+            placeholder='輸入密碼'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='confirmpassword'>
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>確認密碼</Form.Label>
           <Form.Control
             type='password'
-            placeholder='Confirm password'
+            placeholder='確認密碼'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Button type='submit' variant='primary' className='submitButton'>
-          Register
+          註冊
         </Button>
       </Form>
 
       <Row className='py-3'>
         <Col>
-          Have an Account?{' '}
+          已有帳號?{' '}
           <Link
             to={redirect ? `/login?redirect=${redirect}` : '/login'}
             className='linkText'
           >
-            Login
+            登入
           </Link>
         </Col>
       </Row>
