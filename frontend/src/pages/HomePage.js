@@ -2,12 +2,14 @@ import { Row, Col } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
 import ProductCarousel from '../components/ProductCarousel';
 import ProductCategory from '../components/ProductCategory';
+import Meta from '../components/Meta';
 
 const HomePage = () => {
   const { keyword } = useParams();
 
   return (
     <>
+      <Meta />
       {!keyword ? (
         <ProductCarousel />
       ) : (

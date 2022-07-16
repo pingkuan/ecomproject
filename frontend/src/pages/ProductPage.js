@@ -18,7 +18,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productCosntants';
+
 const ProductPage = () => {
   const [qty, setQty] = useState(0);
   const [rating, setRating] = useState(0);
@@ -75,6 +77,7 @@ const ProductPage = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={4}>
               <Image src={product.image} alt={product.name} fluid />
