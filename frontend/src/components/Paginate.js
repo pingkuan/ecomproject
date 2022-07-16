@@ -16,7 +16,7 @@ const Paginate = ({
 
     do {
       chosenPage = Number(prompt('輸入頁數', ''));
-    } while (isNaN(chosenPage));
+    } while (isNaN(chosenPage) || chosenPage > pages);
 
     if (chosenPage !== 0) {
       navigate(
