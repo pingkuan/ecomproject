@@ -22,14 +22,18 @@ const HomePage = () => {
         <Col sm={6} lg={6} className='mb-4 d-flex'>
           <ProductCategory
             category={'card'}
-            image={'/images/14558127.jpg'}
+            image={
+              'https://firebasestorage.googleapis.com/v0/b/yugiohcardshopapp.appspot.com/o/images%2F14558127.jpg?alt=media'
+            }
             name={'單卡'}
           />
         </Col>
         <Col sm={6} lg={6} className='mb-4 d-flex'>
           <ProductCategory
             category={'Accessories'}
-            image={'/images/1.jpg'}
+            image={
+              'https://firebasestorage.googleapis.com/v0/b/yugiohcardshopapp.appspot.com/o/images%2F1.jpg?alt=media'
+            }
             name={'周邊'}
           />
         </Col>
