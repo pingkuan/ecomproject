@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 const ProductCategory = ({ category, image, name }) => {
   return (
     <Card
-      className='text-center w-100 galleryBox linkText cardHover'
+      className='text-center w-100 galleryBox text-decoration-none cardHover'
       as='a'
       href={`/${category}/page`}
     >

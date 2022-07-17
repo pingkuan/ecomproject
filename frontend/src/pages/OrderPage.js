@@ -86,7 +86,10 @@ const OrderPage = () => {
               </p>
               <p>
                 <strong>Email: </strong>{' '}
-                <a href={`mailto:${order.user.email}`} className='linkText'>
+                <a
+                  href={`mailto:${order.user.email}`}
+                  className='text-decoration-none'
+                >
                   {order.user.email}
                 </a>
               </p>
@@ -136,7 +139,7 @@ const OrderPage = () => {
                         <Col>
                           <Link
                             to={`/product/${item.product}`}
-                            className='linkText'
+                            className='text-decoration-none'
                           >
                             {item.name}
                           </Link>

@@ -61,6 +61,7 @@ const ProductListPage = () => {
     successDelete,
     successCreate,
     createdProduct,
+    pageNumber,
   ]);
 
   const deleteHandler = (id) => {

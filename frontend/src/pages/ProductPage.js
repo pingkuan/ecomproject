@@ -168,7 +168,7 @@ const ProductPage = () => {
                       <Col>
                         <Button
                           onClick={addToCartHandler}
-                          className='btnAddCart'
+                          className='fullwidthBtn'
                           type='button'
                           disabled={
                             product.countInStock === 0 || qty <= 0 || isNaN(qty)

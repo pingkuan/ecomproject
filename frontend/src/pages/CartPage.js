@@ -62,7 +62,10 @@ const CartPage = () => {
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col md={3} className='imageInCart'>
-                    <Link to={`/product/${item.product}`} className='linkText'>
+                    <Link
+                      to={`/product/${item.product}`}
+                      className='text-decoration-none'
+                    >
                       {item.name}
                     </Link>
                   </Col>
@@ -129,7 +132,7 @@ const CartPage = () => {
             <ListGroup.Item>
               <Button
                 type='button'
-                className='btn-block btnGoCheckout'
+                className='btn-block fullwidthBtn'
                 disabled={
                   cartItems.length === 0 ||
                   cartItems.reduce((acc, item) => acc + item.qty, 0) === 0

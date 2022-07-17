@@ -18,28 +18,21 @@ h3 {
 .mainContainer {
   padding-top: 90px;
 }
-.btnAddCart {
-  min-width: 100%;
-}
-.btnGoCheckout {
-  min-width: 100%;
-}
+
 .btnCreateProduct {
   float: right;
 }
+
 .formControl {
   max-width: 70px;
 }
+
 .qtyCol {
   max-width: 30%;
 }
 
 .imageInCart {
   text-align: center;
-}
-
-.linkText {
-  text-decoration: none;
 }
 
 .cartInputPosition {

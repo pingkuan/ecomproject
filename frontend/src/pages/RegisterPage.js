@@ -94,7 +94,7 @@ const RegisterPage = () => {
           已有帳號?{' '}
           <Link
             to={redirect ? `/login?redirect=${redirect}` : '/login'}
-            className='linkText'
+            className='text-decoration-none'
           >
             登入
           </Link>

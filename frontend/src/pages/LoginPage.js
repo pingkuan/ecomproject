@@ -65,7 +65,7 @@ const LoginPage = () => {
           新用戶?{' '}
           <Link
             to={redirect ? `/register?redirect=${redirect}` : '/register'}
-            className='linkText'
+            className='text-decoration-none'
           >
             註冊
           </Link>

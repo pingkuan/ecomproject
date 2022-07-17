@@ -86,7 +86,7 @@ const PlaceOrderPage = () => {
                         <Col>
                           <Link
                             to={`/product/${item.product}`}
-                            className='linkText'
+                            className='text-decoration-none'
                           >
                             {item.name}
                           </Link>
