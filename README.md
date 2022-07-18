@@ -1,6 +1,6 @@
 # 遊戲王卡店商平台
 
-- 此專案使用MongoDB資料庫並分別使用React及Express作為前後端框架。
+- 此專案使用MongoDB資料庫並分別使用React及Express作為前後端框架
 
 - 狀態管理工具:Redux
 
