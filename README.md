@@ -42,4 +42,4 @@
 
 - 使用新的Redux toolkit進行狀態管理
 - 增加stripe支付方式
-- 使用Refresh token及Access token增加資安強度
+- 使用Refresh token及Access token增加資安強度，或使用Firebase authentication、Auth0進行使用者認證
