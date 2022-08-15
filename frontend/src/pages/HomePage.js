@@ -23,7 +23,7 @@ const HomePage = () => {
           <ProductCategory
             category={'card'}
             image={
-              'https://firebasestorage.googleapis.com/v0/b/yugiohcardshopapp.appspot.com/o/images%2F14558127.jpg?alt=media'
+              'https://storage.googleapis.com/yugiohcardshopapp.appspot.com/images/14558127.jpg'
             }
             name={'單卡'}
           />
@@ -32,7 +32,7 @@ const HomePage = () => {
           <ProductCategory
             category={'Accessories'}
             image={
-              'https://firebasestorage.googleapis.com/v0/b/yugiohcardshopapp.appspot.com/o/images%2F1.jpg?alt=media'
+              'https://storage.googleapis.com/yugiohcardshopapp.appspot.com/images/1.jpg'
             }
             name={'周邊'}
           />
